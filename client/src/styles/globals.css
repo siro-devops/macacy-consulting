@@ -1,0 +1,152 @@
+﻿*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { cursor: pointer; font: inherit; }
+.container { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 var(--s-3); }
+.section { padding: var(--s-7) 0; position: relative; } .section > .container > .eyebrow { display: inline-flex; align-items: center; gap: 10px; } .section > .container > .eyebrow::before { content: ""; display: inline-block; width: 24px; height: 2px; background: var(--gold); border-radius: 2px; }
+.section--tight { padding: var(--s-5) 0; }
+.section--dark { background: var(--slate); color: #fff; }
+.section--dark p, .section--dark h1, .section--dark h2, .section--dark h3 { color: #fff; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.85rem 1.6rem; border-radius: var(--r-sm); font-weight: 600; font-size: 0.95rem; border: 1px solid transparent; transition: transform 0.18s var(--ease), background 0.18s var(--ease), color 0.18s var(--ease), box-shadow 0.18s var(--ease); white-space: nowrap; }
+.btn:hover { transform: translateY(-1px); }
+.btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.btn--gold { background: var(--gold); color: var(--slate-deep); }
+.btn--gold:hover { background: var(--gold-bright); }
+.btn--slate { background: var(--slate); color: #fff; }
+.btn--slate:hover { background: var(--slate-deep); }
+.btn--ghost { background: transparent; border-color: var(--storm); color: var(--text); }
+.btn--ghost:hover { border-color: var(--gold); color: var(--gold); }
+.btn--ghost-light { background: transparent; border-color: rgba(255,255,255,0.4); color: #fff; }
+.btn--ghost-light:hover { border-color: var(--gold); color: var(--gold); }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+.grid { display: grid; gap: var(--s-3); }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+}
+
+/* ---- section separators ---- */
+.section + .section { border-top: 1px solid var(--border); }
+.section:nth-of-type(even) { background: var(--bg-alt); }
+.section--dark:nth-of-type(even) { background: var(--slate); }
+.section > .container > .eyebrow { display: inline-flex; align-items: center; gap: 10px; }
+.section > .container > .eyebrow::before { content: ""; display: inline-block; width: 24px; height: 2px; background: var(--gold); border-radius: 2px; }
+
+/* ---- closing section spacing (Services page) ---- */
+.section.services-closing {
+  padding-bottom: 0;
+}
+
+/* ---- Unified tile hover (matches Services page) ---- */
+.cat-tile,
+.proof-card,
+.svd__block,
+.cfc,
+.rep,
+.note,
+.lg,
+.mu,
+.guide {
+  transition: transform 0.25s var(--ease), border-color 0.25s var(--ease), box-shadow 0.25s var(--ease);
+  will-change: transform;
+  position: relative;
+}
+.cat-tile:hover,
+.proof-card:hover,
+.svd__block:hover,
+.cfc:hover,
+.rep:hover,
+.note:hover,
+.lg:hover,
+.mu:hover,
+.guide:hover {
+  transform: translateY(-3px) scale(1.06);
+  border-color: var(--gold);
+  box-shadow: 0 0 0 2px var(--gold), 0 14px 34px rgba(201,169,97,0.28);
+  z-index: 2;
+}
+
+/* Home SVD blocks sit on light bg — soften shadow to match */
+.svd__block:hover {
+  box-shadow: 0 0 0 2px var(--gold), 0 12px 28px rgba(201,169,97,0.24);
+}
+
+/* Disable on small screens for the tile grid items */
+@media (max-width: 720px) {
+  .cat-tile:hover,
+  .cfc:hover,
+  .svd__block:hover,
+  .lg:hover,
+  .mu:hover {
+    transform: none;
+    box-shadow: 0 0 0 1px var(--gold);
+  }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .cat-tile:hover,
+  .proof-card:hover,
+  .svd__block:hover,
+  .cfc:hover,
+  .rep:hover,
+  .note:hover,
+  .lg:hover,
+  .mu:hover,
+  .guide:hover {
+    transform: none;
+  }
+}
+
+/* ---- FAQ accordion hover (matches tile behaviour) ---- */
+body .acc-item {
+  transition: transform 0.25s var(--ease), background 0.25s var(--ease),
+    border-color 0.25s var(--ease), box-shadow 0.25s var(--ease);
+  will-change: transform;
+  background: #fff;
+  border-radius: var(--r-md);
+  border: 1px solid var(--border);
+  margin-bottom: 8px;
+  padding: 0 var(--s-3);
+}
+body .acc-item:hover {
+  transform: translateY(-3px) scale(1.03);
+  border-color: var(--gold);
+  box-shadow: 0 0 0 2px var(--gold), 0 14px 34px rgba(201,169,97,0.28);
+  z-index: 2;
+}
+body .acc-item.is-open {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 2px var(--gold), 0 8px 20px rgba(201,169,97,0.18);
+}
+body .acc-item.is-open:hover {
+  transform: translateY(-3px) scale(1.03);
+}
+
+/* Strip the accordion's own top border since each item is now a card */
+body .accordion {
+  border-top: none;
+}
+
+@media (max-width: 720px) {
+  body .acc-item:hover {
+    transform: none;
+    box-shadow: 0 0 0 1px var(--gold);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body .acc-item:hover,
+  body .acc-item.is-open:hover {
+    transform: none;
+  }
+}
+
+.contact-consultant .contact-note {
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  display: block !important;
+  max-width: 100% !important;
+}
