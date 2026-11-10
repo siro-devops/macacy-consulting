@@ -10,7 +10,7 @@ import checklistRouter from './routes/checklist.js';
 import casefilesRouter from './routes/casefiles.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const frontendPath = path.join(__dirname, '..', 'client', 'dist');
+const frontendPath = path.join(__dirname, 'public');
 
 const app = express();
 
