@@ -22,6 +22,8 @@ app.use(helmet({
 const allowedOrigins = [
   'http://localhost:5173',
   'http://localhost:4173',
+  'https://macacy.com',
+  'https://www.macacy.com',
   process.env.PUBLIC_SITE_URL,
 ].filter(Boolean);
 
